@@ -44,7 +44,7 @@ if let Some(value) = cache.get("key1") {
 
 ## License
 
-`fastcache`` is dual-licensed under the MIT license and the Apache License (Version 2.0).
+`fastcache` is dual-licensed under the MIT license and the Apache License (Version 2.0).
 
 ## Contributing
 

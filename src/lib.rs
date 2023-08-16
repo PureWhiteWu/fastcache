@@ -159,3 +159,53 @@ where
         self.expire_started.store(false, Ordering::Release);
     }
 }
+
+/// A capacity based fifo cache.
+pub struct SizedCache<K, V> {
+    map: DashMap<K, V, ahash::RandomState>,
+    ringbuf: ArrayQueue<K>,
+
+    capacity: usize,
+}
+
+impl<K, V> SizedCache<K, V>
+where
+    K: Eq + Hash + Clone,
+    V: Clone,
+{
+    /// Create a new cache with the given capacity and time-to-live (TTL) for values.
+    pub fn new(capacity: usize) -> Self {
+        Self {
+            map: DashMap::with_capacity_and_hasher(capacity, ahash::RandomState::new()),
+            ringbuf: ArrayQueue::new(capacity),
+            capacity,
+        }
+    }
+
+    /// Get the number of elements in the cache.
+    pub fn len(&self) -> usize {
+        self.ringbuf.len()
+    }
+
+    /// Get the capacity of the cache.
+    pub fn capacity(&self) -> usize {
+        self.capacity
+    }
+
+    /// Get the value associated with the given key, if it exists and is not expired.
+    pub fn get(&self, key: &K) -> Option<V> {
+        self.map.get(&key).map(|v| v.value().clone())
+    }
+
+    /// Insert a key-value pair in the cache.
+    ///
+    /// If the cache is full, it will evict the oldest entry.
+    pub fn insert(&self, key: K, value: V) {
+        while let Err(_) = self.ringbuf.push(key.clone()) {
+            // ringbuf is full, pop one
+            let k = self.ringbuf.pop().unwrap();
+            self.map.remove(&k);
+        }
+        self.map.insert(key, value);
+    }
+}

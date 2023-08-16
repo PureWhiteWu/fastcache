@@ -173,7 +173,7 @@ where
     K: Eq + Hash + Clone,
     V: Clone,
 {
-    /// Create a new cache with the given capacity and time-to-live (TTL) for values.
+    /// Create a new cache with the given capacity.
     pub fn new(capacity: usize) -> Self {
         Self {
             map: DashMap::with_capacity_and_hasher(capacity, ahash::RandomState::new()),
@@ -192,7 +192,7 @@ where
         self.capacity
     }
 
-    /// Get the value associated with the given key, if it exists and is not expired.
+    /// Get the value associated with the given key.
     pub fn get(&self, key: &K) -> Option<V> {
         self.map.get(&key).map(|v| v.value().clone())
     }

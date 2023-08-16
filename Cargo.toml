@@ -2,8 +2,20 @@
 name = "fastcache"
 version = "0.1.0"
 edition = "2021"
+authors = ["Pure White <me@purewhite.io>"]
+description = "A performant but not-so-accurate time and capacity based cache for Rust."
+repository = "https://github.com/PureWhiteWu/fastcache"
+readme = "README.md"
+homepage = "https://crates.io/crates/fastcache"
+documentation = "https://docs.rs/fastcache"
+keywords = ["cache", "time", "capacity", "performance", "ttl"]
+categories = ["caching"]
+license = "MIT OR Apache-2.0"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[badges]
+maintenance = { status = "actively-developed" }
 
 [dependencies]
 ahash = "0.8"

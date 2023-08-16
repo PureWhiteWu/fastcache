@@ -100,7 +100,7 @@ where
     }
 
     /// Get the value associated with the given key, if it exists and is not expired.
-    pub fn get(&self, key: K) -> Option<Value<V>> {
+    pub fn get(&self, key: &K) -> Option<Value<V>> {
         let v = self.map.get(&key);
         if v.is_none() {
             return None;

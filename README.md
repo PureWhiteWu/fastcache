@@ -10,21 +10,22 @@
 
 A performant but not-so-accurate time and capacity based cache for Rust.
 
-This module provides an implementation of a time-to-live (TTL) and capacity based cache.
+This crate provides an implementation of a time-to-live (TTL) and capacity based cache.
 It stores key-value pairs and automatically evicts expired entries based on their TTL.
 
-The implementation trades off exact TTL-based expiration for better performance,
-which means that expired items may not be removed immediately upon expiration, and an
-item may be removed before its expiration time.
+The design trades off exact TTL-based expiration for better performance,
+which means that expired items may not be removed immediately upon expiration,
+and an item may be removed before its expiration time.
 
-The implmentation also may return expired items, which means that the caller should
+It's also by design that `get` may return expired items, which means that the caller should
 check the expiration status of the returned value by calling `value.is_expired()`
-before using it. It's up to the user if to use the expired value or not. This design
-can be useful in some cases, for example, when the caller wants to use the expired
-value as a fallback or to do rpc in background to update the value and return the
-expired value immediately to reduce latency.
+before using it. It's up to the user if to use the expired value or not.
 
-# Examples
+This design can be useful in some cases, for example, when the caller wants to use the
+expired value as a fallback or to do rpc in background to update the value and return
+the expired value immediately to reduce latency.
+
+## Examples
 
 ```rust
 use fastcache::Cache;
@@ -40,3 +41,11 @@ if let Some(value) = cache.get("key1") {
     println!("Value not found");
 }
 ```
+
+## License
+
+`fastcache`` is dual-licensed under the MIT license and the Apache License (Version 2.0).
+
+## Contributing
+
+Any kinds of contributions are welcomed. Feel free to open pull requests or issues.

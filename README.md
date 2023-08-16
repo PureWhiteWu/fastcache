@@ -1,5 +1,13 @@
 # fastcache
 
+[![Crates.io](https://img.shields.io/crates/v/fastcache)](https://crates.io/crates/fastcache)
+[![Documentation](https://docs.rs/fastcache/badge.svg)](https://docs.rs/fastcache)
+[![License](https://img.shields.io/crates/l/fastcache)](#license)
+[![Build Status][actions-badge]][actions-url]
+
+[actions-badge]: https://github.com/PureWhiteWu/fastcache/actions/workflows/rust.yaml/badge.svg
+[actions-url]: https://github.com/PureWhiteWu/fastcache/actions
+
 A performant but not-so-accurate time and capacity based cache for Rust.
 
 This module provides an implementation of a time-to-live (TTL) and capacity based cache.

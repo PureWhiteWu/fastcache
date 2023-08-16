@@ -5,8 +5,8 @@
 [![License](https://img.shields.io/crates/l/fastcache)](#license)
 [![Build Status][actions-badge]][actions-url]
 
-[actions-badge]: https://github.com/PureWhiteWu/fastcache/actions/workflows/rust.yaml/badge.svg
-[actions-url]: https://github.com/PureWhiteWu/fastcache/actions
+[actions-badge]: https://github.com/PureWhiteWu/fastcache/actions/workflows/rust.yml/badge.svg
+[actions-url]: https://github.com/PureWhiteWu/fastcache/actions/workflows/rust.yml
 
 A performant but not-so-accurate time and capacity based cache for Rust.
 

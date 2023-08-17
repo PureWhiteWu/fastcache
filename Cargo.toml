@@ -1,6 +1,6 @@
 [package]
 name = "fastcache"
-version = "0.1.4"
+version = "0.1.5"
 edition = "2021"
 authors = ["Pure White <me@purewhite.io>"]
 description = "A performant but not-so-accurate time and capacity based cache for Rust."

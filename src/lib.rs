@@ -112,6 +112,7 @@ where
             expire_at: v.1,
             is_expired: now > v.1,
         };
+        // The reference must be dropped, or will cause a deadlock when do expire.
         drop(v);
         self.do_expire(now);
         Some(value)

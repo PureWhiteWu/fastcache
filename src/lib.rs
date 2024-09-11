@@ -160,6 +160,13 @@ where
         }
         self.expire_started.store(false, Ordering::Release);
     }
+
+    pub fn clear(&self) {
+        while let Some((k, _)) = self.ringbuf.pop() {
+            self.map.remove(&k);
+        }
+        self.oldest.store(Instant::now());
+    }
 }
 
 /// A capacity based fifo cache.
@@ -209,5 +216,11 @@ where
             self.map.remove(&k);
         }
         self.map.insert(key, value);
+    }
+
+    pub fn clear(&self) {
+        while let Some(k) = self.ringbuf.pop() {
+            self.map.remove(&k);
+        }
     }
 }

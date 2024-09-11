@@ -1,6 +1,6 @@
 [package]
 name = "fastcache"
-version = "0.1.5"
+version = "0.1.6"
 edition = "2021"
 authors = ["Pure White <me@purewhite.io>"]
 description = "A performant but not-so-accurate time and capacity based cache for Rust."
@@ -21,4 +21,4 @@ maintenance = { status = "actively-developed" }
 ahash = "0.8"
 crossbeam-queue = "0.3"
 crossbeam-utils = "0.8"
-dashmap = { version = "5", features = ["inline"] }
+dashmap = { version = "6", features = ["inline"] }

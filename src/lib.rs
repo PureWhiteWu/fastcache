@@ -134,6 +134,10 @@ where
         self.do_expire(now);
     }
 
+    pub fn remove(&self, key: &K) -> Option<V> {
+        self.map.remove(key).map(|v| v.1.0)
+    }
+
     /// Check and evict expired items in the cache.
     fn do_expire(&self, now: Instant) {
         if self.oldest.load() > now {
@@ -216,6 +220,10 @@ where
             self.map.remove(&k);
         }
         self.map.insert(key, value);
+    }
+
+    pub fn remove(&self, key: &K) -> Option<V> {
+        self.map.remove(key).map(|v| v.1)
     }
 
     pub fn clear(&self) {
